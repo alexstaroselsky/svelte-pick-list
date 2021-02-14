@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import { send, receive } from "./crossfade";
   import Controls from "./Controls.svelte";
 
@@ -8,46 +9,51 @@
   export let sortFn = (a, b) => a.key.localeCompare(b.key);
   export let titles = ["Available", "Selected"];
 
+  const dispatch = createEventDispatcher();
+
   function move(direction) {
+    let items = [];
+
     if (direction === "right") {
-      data[1] = [
-        ...data[1],
-        ...data[0].filter((item) => selectedKeys[0].includes(item.key)),
-      ];
+      items = data[0].filter((item) => selectedKeys[0].includes(item.key));
+
+      data[1] = [...data[1], ...items];
       data[0] = data[0].filter((item) => !selectedKeys[0].includes(item.key));
 
       selectedKeys = [[], selectedKeys[1]];
     } else {
-      data[0] = [
-        ...data[0],
-        ...data[1].filter((item) => selectedKeys[1].includes(item.key)),
-      ];
+      items = data[1].filter((item) => selectedKeys[1].includes(item.key));
+
+      data[0] = [...data[0], ...items];
       data[1] = data[1].filter((item) => !selectedKeys[1].includes(item.key));
 
       selectedKeys = [selectedKeys[0], []];
     }
 
+    dispatch("move", { direction, items });
+
     return;
   }
 
   function moveAll(direction) {
-    if (direction === "right") {
-      data = [
-        [...data[0].filter((d) => d.disabled)],
-        [...data[0].filter((d) => !d.disabled), ...data[1]],
-      ];
+    let items = [];
 
+    if (direction === "right") {
+      items = [...data[0].filter((d) => !d.disabled), ...data[1]];
+      data = [[...data[0].filter((d) => d.disabled)], items];
       selectedKeys = [[], []];
 
       return;
+    } else {
+      data = [
+        [...data[0], ...data[1].filter((d) => !d.disabled)],
+        data[1].filter((d) => d.disabled),
+      ];
     }
 
-    data = [
-      [...data[0], ...data[1].filter((d) => !d.disabled)],
-      data[1].filter((d) => d.disabled),
-    ];
-
     selectedKeys = [[], []];
+
+    dispatch("moveAll", { direction, items });
 
     return;
   }
@@ -56,6 +62,11 @@
     selectedKeys[index] = data[index]
       .filter((d) => !d.disabled)
       .map((d) => d.key);
+
+    dispatch("selectAll", {
+      index,
+      items: data[index].filter((d) => !d.disabled),
+    });
   }
 
   $: leftKeys = data[0].filter((d) => !d.disabled).map((d) => d.key);

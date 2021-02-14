@@ -3,7 +3,7 @@
   "description": "svelte component for reordering items between different lists",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {

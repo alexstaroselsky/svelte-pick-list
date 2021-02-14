@@ -18,6 +18,14 @@ Svelte component comprised of two lists arranged using CSS List Layout with butt
 | sortFn       | Function: Array                                                | false    | (a, b) => a.key.localeCompare(b.key) | Function for sorting items in each list                                                     |
 | titles       | Array<String>                                                  | false    | ["Available", "Selected"]            | Array of titles/headings to render                                                          |
 
+#### Events
+
+| Name      | Description                                    |
+| --------- | ---------------------------------------------- |
+| selectAll | Fired when select all is checked.              |
+| move      | Fired when items are move to another list.     |
+| moveAll   | Fired when all items are move to another list. |
+
 ## Installation
 
 ```bash
@@ -54,3 +62,6 @@ npm install svelte-pick-list
 - [ ] Allow custom styles
 - [ ] Allow custom list object data structure
 - [ ] Allow custom animation
+- [x] Dispatch events
+- [ ] Add search functionality
+- [ ] Add re-order functionality
