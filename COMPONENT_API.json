@@ -1,0 +1,74 @@
+{
+  "total": 1,
+  "components": [
+    {
+      "moduleName": "PickList",
+      "filePath": "src/Component.svelte",
+      "props": [
+        {
+          "name": "data",
+          "kind": "let",
+          "description": "Items",
+          "type": "[PickListItem[], PickListItem[]]",
+          "value": "[[], []]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": true
+        },
+        {
+          "name": "selectedKeys",
+          "kind": "let",
+          "description": "Keys for selected items",
+          "type": "[string[], string[]]",
+          "value": "[[], []]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": true
+        },
+        {
+          "name": "renderFormat",
+          "kind": "let",
+          "description": "Function for rendering item label",
+          "type": "(item: PickListItem) => string",
+          "value": "(item) => item.label || item.key",
+          "isFunction": true,
+          "constant": false,
+          "reactive": false
+        },
+        {
+          "name": "sortFn",
+          "kind": "let",
+          "description": "Sort function for items",
+          "type": "(a: PickListItem, b: PickListItem) => number",
+          "value": "(a, b) => a.key.localeCompare(b.key)",
+          "isFunction": true,
+          "constant": false,
+          "reactive": false
+        },
+        {
+          "name": "titles",
+          "kind": "let",
+          "description": "Titles for left and right sections",
+          "type": "[string, string]",
+          "value": "[\"Available\", \"Selected\"]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": false
+        }
+      ],
+      "slots": [],
+      "events": [
+        { "type": "dispatched", "name": "move" },
+        { "type": "dispatched", "name": "moveAll" },
+        { "type": "dispatched", "name": "selectAll" }
+      ],
+      "typedefs": [
+        {
+          "type": "{key: string; label: string; [x: string]: any;}",
+          "name": "PickListItem",
+          "ts": "interface PickListItem {key: string; label: string; [x: string]: any;}"
+        }
+      ]
+    }
+  ]
+}
