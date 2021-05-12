@@ -1,1 +1,4 @@
-export { default as default } from "./Component.svelte";
+import PickList from "./Component.svelte";
+
+export { PickList };
+export default PickList;

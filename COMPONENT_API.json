@@ -1,0 +1,63 @@
+{
+  "total": 1,
+  "components": [
+    {
+      "moduleName": "PickList",
+      "filePath": "src/Component.svelte",
+      "props": [
+        {
+          "name": "data",
+          "kind": "let",
+          "type": "[[], []]",
+          "value": "[[], []]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": true
+        },
+        {
+          "name": "selectedKeys",
+          "kind": "let",
+          "type": "[[], []]",
+          "value": "[[], []]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": true
+        },
+        {
+          "name": "renderFormat",
+          "kind": "let",
+          "type": "(item) => item.label || item.key",
+          "value": "(item) => item.label || item.key",
+          "isFunction": true,
+          "constant": false,
+          "reactive": false
+        },
+        {
+          "name": "sortFn",
+          "kind": "let",
+          "type": "(a, b) => a.key.localeCompare(b.key)",
+          "value": "(a, b) => a.key.localeCompare(b.key)",
+          "isFunction": true,
+          "constant": false,
+          "reactive": false
+        },
+        {
+          "name": "titles",
+          "kind": "let",
+          "type": "[\"Available\", \"Selected\"]",
+          "value": "[\"Available\", \"Selected\"]",
+          "isFunction": false,
+          "constant": false,
+          "reactive": false
+        }
+      ],
+      "slots": [],
+      "events": [
+        { "type": "dispatched", "name": "move" },
+        { "type": "dispatched", "name": "moveAll" },
+        { "type": "dispatched", "name": "selectAll" }
+      ],
+      "typedefs": []
+    }
+  ]
+}
