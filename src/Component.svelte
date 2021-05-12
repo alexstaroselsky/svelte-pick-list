@@ -3,10 +3,34 @@
   import { send, receive } from "./crossfade";
   import Controls from "./Controls.svelte";
 
+  /**
+   * @typedef {{key: string; label: string; [x: string]: any;}} PickListItem
+   */
+
+  /**
+   * Items
+   * @type {[PickListItem[], PickListItem[]]}
+   */
   export let data = [[], []];
+  /**
+   * Keys for selected items
+   * @type {[string[], string[]]}
+   */
   export let selectedKeys = [[], []];
+  /**
+   * Function for rendering item label
+   * @type {(item: PickListItem) => string}
+   */
   export let renderFormat = (item) => item.label || item.key;
+  /**
+   * Sort function for items
+   * @type {(a: PickListItem, b: PickListItem) => number}
+   */
   export let sortFn = (a, b) => a.key.localeCompare(b.key);
+  /**
+   * Titles for left and right sections
+   * @type {[string, string]}
+   */
   export let titles = ["Available", "Selected"];
 
   const dispatch = createEventDispatcher();
@@ -81,6 +105,7 @@
   $: isAllRightDisabled = rightKeys.length === 0;
   $: rightIndeterminate =
     selectedKeys[1].length && selectedKeys[1].length < rightKeys.length;
+
 </script>
 
 <div class="pick-list">
@@ -224,4 +249,5 @@
   .item.disabled .checkbox {
     color: #7a7a7a;
   }
+
 </style>
