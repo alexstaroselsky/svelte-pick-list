@@ -129,12 +129,10 @@
           class="item"
           class:selected={selectedKeys.includes(item.key)}
           class:disabled={item.disabled}
+          in:receive={{ key: item.key }}
+          out:send={{ key: item.key }}
         >
-          <label
-            class="label"
-            in:receive={{ key: item.key }}
-            out:send={{ key: item.key }}
-          >
+          <label class="label">
             <input
               type="checkbox"
               class="checkbox"
@@ -142,7 +140,11 @@
               bind:group={selectedKeys[0]}
               disabled={item.disabled}
             />
-            <span class="content">{renderFormat(item)}</span>
+            <div class="content">
+              <slot name="item" {item}>
+                <span>{renderFormat(item)}</span>
+              </slot>
+            </div>
           </label>
         </div>
       {/each}
@@ -175,12 +177,10 @@
           class="item"
           class:selected={selectedKeys.includes(item.key)}
           class:disabled={item.disabled}
+          in:receive={{ key: item.key }}
+          out:send={{ key: item.key }}
         >
-          <label
-            class="label"
-            in:receive={{ key: item.key }}
-            out:send={{ key: item.key }}
-          >
+          <label class="label">
             <input
               type="checkbox"
               class="checkbox"
@@ -188,7 +188,11 @@
               bind:group={selectedKeys[1]}
               disabled={item.disabled}
             />
-            <span class="content">{renderFormat(item)}</span>
+            <div class="content">
+              <slot name="item" {item}>
+                <span>{renderFormat(item)}</span>
+              </slot>
+            </div>
           </label>
         </div>
       {/each}
@@ -215,7 +219,7 @@
   }
 
   .body {
-    height: 200px;
+    height: var(--pick-list-body-height, 200px);
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -226,6 +230,9 @@
 
   .label {
     padding: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .label,
@@ -237,6 +244,11 @@
   .checkbox {
     vertical-align: baseline;
     margin: 0;
+  }
+
+  .content {
+    margin-left: 8px;
+    width: 100%;
   }
 
   .item.disabled .label,

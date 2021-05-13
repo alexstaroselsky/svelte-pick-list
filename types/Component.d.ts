@@ -1,9 +1,11 @@
 /// <reference types="svelte" />
 import { SvelteComponentTyped } from "svelte";
 
-export type PickListItem = {
-  [key: string]: any;
-} & ({ label: string } | { key: string });
+export interface PickListItem {
+  key: string;
+  label: string;
+  [x: string]: any;
+}
 
 export interface PickListProps {
   /**
@@ -44,5 +46,5 @@ export default class PickList extends SvelteComponentTyped<
     moveAll: CustomEvent<any>;
     selectAll: CustomEvent<any>;
   },
-  {}
+  { item: { item: any } }
 > {}

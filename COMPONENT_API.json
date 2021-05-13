@@ -56,7 +56,14 @@
           "reactive": false
         }
       ],
-      "slots": [],
+      "slots": [
+        {
+          "name": "item",
+          "default": false,
+          "fallback": "<span>{renderFormat(item)}</span>",
+          "slot_props": "{ item: any }"
+        }
+      ],
       "events": [
         { "type": "dispatched", "name": "move" },
         { "type": "dispatched", "name": "moveAll" },

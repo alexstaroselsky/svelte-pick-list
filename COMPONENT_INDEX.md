@@ -30,7 +30,9 @@ export interface PickListItem {
 
 ### Slots
 
-None.
+| Slot name | Default | Props                       | Fallback                                                   |
+| :-------- | :------ | :-------------------------- | :--------------------------------------------------------- |
+| item      | No      | <code>{ item: any } </code> | <code>&lt;span&gt;{renderFormat(item)}&lt;/span&gt;</code> |
 
 ### Events
 

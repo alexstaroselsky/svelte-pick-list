@@ -4,7 +4,7 @@
   "svelte": "./src/index.js",
   "module": "./dist/index.mjs",
   "types": "./types/index.d.ts",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
